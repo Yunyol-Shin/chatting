@@ -58,7 +58,7 @@ public class ChatDataArrayAdapter extends ArrayAdapter<ChatData> {
         if (v == null) {
             ChatData chatData=adapter.get(position);
 
-            if(chatData.getUserName().equals(MainActivity.username)&&!chatData.getUserName().equals(last)){
+            if(last==null||!chatData.getUserName().equals(last)){
 
                 if(chatData.getUserName().equals(MainActivity.username)) {
                     LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,7 +70,7 @@ public class ChatDataArrayAdapter extends ArrayAdapter<ChatData> {
                     t2.setText(chatData.getTime());
                     t2.setTextSize(10);
                     t3=(TextView)v.findViewById(R.id.textView4);
-                    t3.setText("USER"+chatData.getUserName());
+                    t3.setText(chatData.getUserName());
                     t3.setTypeface(null, Typeface.BOLD);
                 }
 
@@ -85,7 +85,7 @@ public class ChatDataArrayAdapter extends ArrayAdapter<ChatData> {
                     t2.setText(chatData.getTime());
                     t2.setTextSize(10);
                     t3 = (TextView) v.findViewById(R.id.textView4);
-                    t3.setText("USER" + chatData.getUserName());
+                    t3.setText(chatData.getUserName());
                     t3.setTypeface(null, Typeface.BOLD);
                 }
             }
@@ -101,7 +101,9 @@ public class ChatDataArrayAdapter extends ArrayAdapter<ChatData> {
                       t2 = (TextView) v.findViewById(R.id.timeStamp2);
                       t2.setText(chatData.getTime());
                       t2.setTextSize(10);
-                   }
+
+
+                  }
 
                   else {
                       LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -114,6 +116,8 @@ public class ChatDataArrayAdapter extends ArrayAdapter<ChatData> {
                       t2 = (TextView) v.findViewById(R.id.timeStamp2);
                       t2.setText(chatData.getTime());
                       t2.setTextSize(10);
+
+
                   }
             }
 

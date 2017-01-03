@@ -1,5 +1,7 @@
 package com.example.q.chat;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,13 +41,25 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editText);
         sendButton = (Button) findViewById(R.id.button);
 
-        username=Secure.getString(getContentResolver(), Secure.ANDROID_ID);
-        if(username==null)
-            username=new Integer((int)(Math.random()*10000)).toString();
+
 
         adapter = new ChatDataArrayAdapter(this, android.R.layout.simple_list_item_1, chatData);
         listview.setAdapter(adapter);
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Write your name");
+        //alert.setMessage("Message");
+        final EditText input = new EditText(this);
+        alert.setView(input);
 
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String value = input.getText().toString();
+                value.toString();
+                username = value;
+            }
+        });
+        alert.create().show();
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
